@@ -1,0 +1,62 @@
+# ---- 编译产物 (MDK-ARM / Keil) ----
+MDK-ARM/Project/
+MDK-ARM/DebugConfig/
+MDK-ARM/RTE/
+MDK-ARM/build_check.log
+# UV4.exe -b / -f 的 -o 参数会把构建/烧录日志写成 .txt。
+# 一开始漏了这条，结果 29 个 build_xxx.txt / flash_xxx.txt 全被提交进仓库了
+# （2026-09-29 清掉）。这种文件是排查过程的副产品，要留就留结论，别留日志。
+MDK-ARM/*.txt
+# UV4.exe 的 -o 写成 "-" 时会生成一个**叫 "-" 的文件**，内容是构建日志（十几 MB）。
+# 这名字看不出是什么，很容易被 git add -A 顺手提交进去（2026-09-30 清掉了一个 12MB 的）。
+-
+MDK-ARM/-
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.elf
+*.map
+*.lnp
+*.sct
+*.htm
+*.dep
+*.build_log.htm
+
+# ---- 编译产物 (CMake / GCC) ----
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Makefile
+*.su
+*.lst
+
+# ---- IDE / 编辑器本地配置 ----
+*.uvguix.*
+*.bak
+*.before*
+*.log
+*.log.lock
+.cache/
+*~
+
+# ---- 个人笔记（不纳入仓库）----
+# 2026-10-25 决定：学习笔记单独保管，仓库只留工程代码。
+# 用通配符而不是逐个列文件——手工列了 5 个，结果漏掉 BSP/LCD/笔记.md。
+# 通配符不会误伤库自带的 README.md / LICENSE.md（不含"笔记"二字）。
+笔记/
+电容触摸笔记/
+*笔记*.md
+BSP/LCD/ST7789驱动代码思路.md
+
+# 以后若想把某个笔记加回来：git add -f <文件>
+
+# ---- 系统文件 ----
+Thumbs.db
+desktop.ini
+.DS_Store
